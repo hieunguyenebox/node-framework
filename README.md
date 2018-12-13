@@ -2,9 +2,9 @@
 
 ### Getting Started
 
-Basic code structure includes: React and express.
-Quick and easy to create and deploy new web app :))
-Need more? write you own code(plugin) in a directory inside plugins, then start it with other plugins :))
+- Basic code structure includes: React and express.
+- Quick and easy to create and deploy new web app :))
+- Need more? write you own code(plugin) in a directory inside plugins, then start it with other plugins :))
 
 ### Installing
 
