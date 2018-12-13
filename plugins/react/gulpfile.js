@@ -86,10 +86,12 @@ class Gulp extends MainGulp {
 				'webpack/hot/only-dev-server',
 				'react-hot-loader/patch',
 				this.dir() + '/app.jsx',
+				'@babel/polyfill'
 			]
 
 		return [
 			this.dir() + '/app.jsx',
+			'@babel/polyfill'
 		]
 	}
 

@@ -13,10 +13,10 @@ class GulpMain {
 
 		this.babelConfig = {
 
-			presets: ['env'],
+			presets: ['@babel/preset-env'],
 			plugins: [
-		        "transform-class-properties",
-		        "transform-object-rest-spread",
+				"@babel/plugin-proposal-class-properties",
+		        "@babel/plugin-proposal-object-rest-spread",
 		        ["module-resolver", {
 		            alias: {
 		                plugins: path.resolve(process.cwd(), 'dist'),
