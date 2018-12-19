@@ -1,7 +1,7 @@
 
-import Local from './storages/local'
-import AWS from './storages/s3'
-import Google from './storages/google'
+import Local from './services/local'
+import AWS from './services/s3'
+import Google from './services/google'
 
 const Storage = name => {
 

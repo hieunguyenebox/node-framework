@@ -1,8 +1,9 @@
 
 import Storage from 'upload-cloud-storage'
+import StorageAPI from './storage'
 import config from 'plugins/lib/config'
 
-const { project_id, key_filem bucket_name } = config.get('storage.google')
+const { project_id, key_file, bucket_name } = config.get('storage.google')
 
 const Google = Storage.init({
 
@@ -12,9 +13,18 @@ const Google = Storage.init({
     bucketName: bucket_name,
 })
 
-const store = (filepath, dest) => {
 
-	return Google.upload(filepath, { deleteSource: true, dest})
+class GoogleStorage extends StorageAPI {
+
+	config = config.get('storage.google')
+
+	upload = (filepath, dest) => {
+	
+		dest = dest.substr(0, dest.lastIndexOf('/'))
+
+		return Google.upload(filepath, { deleteSource: true, dest}).then(url => console.log(url))
+
+	}
 }
 
-export default { store }
+export default new GoogleStorage

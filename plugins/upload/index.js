@@ -2,11 +2,17 @@
 import config from 'plugins/lib/config'
 import multer from 'multer'
 import app from 'plugins/lib/server/app'
+import path from 'path'
 import nanoid from 'nanoid'
 import md5 from 'md5'
+import fs from 'fs'
+import logger from 'plugins/lib/logger'
+import Storage from 'plugins/lib/storage'
 
 const { maxFiles, maxFileSize } = config.get('storage.limit')
 
+const storage = Storage(config.get('storage.default'))
+	
 const uploadStorage = multer.diskStorage({
 
 	destination: (req, file, cb) => {
@@ -36,11 +42,23 @@ const upload = multer({
 
 })
 
+const createTmpDir = () => {
+
+	if (!fs.existsSync('/tmp/uploads'))
+		fs.mkdir('/tmp/uploads', () => {})
+}
+
 const bootstrap = () => {
+
+	createTmpDir()
 
 	app.post('/upload', upload.single('file'), (req, res) => {
 
-		res.json({ok: 1})
+		storage.store(req.file).then(url => res.json({url})).catch(err => {
+			logger.error(err)
+			res.json({url: ''})
+		})
+			
 	})
 }
 

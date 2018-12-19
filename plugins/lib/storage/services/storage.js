@@ -1,49 +1,37 @@
 
 import logger from 'plugins/lib/logger'
-import FileModel from '../file-model'
-import md5 from 'md5'
+import FileModel from '../models/file-model'
 import 'babel-polyfill'
 import fs from 'fs'
 
 class Storage {
 
-	store = async (file, dir, user) => {
+	store = async (file, subdir, user) => {
 
-		const {
+		if (!subdir) subdir = '';
 
-			originalname: originalName,
-			mimetype: mimeType,
-			filename,
-			size,
-			path: filepath
+		this.upload(file.path, this.getDest(file.filename , subdir), subdir)
 
-		} = file;
-
-		dir = dir ? dir : ''
-
-		const readStream = fs.createReadStream(filepath)
-			, writeStream = await this.createWriteStream(filename, dir);
-
-		readStream.pipe(writeStream)
-
-		//remove tmp file
-		writeStream.on('finish', () => {
-
-			fs.unlink(filepath, err => {
-
-				if (err) logger.error(err)
-			})
-		})
-
-		const publicPath = this.getPublicPath(filename, dir)
-
+		const publicPath = this.getPublicPath(file.filename, subdir)
+		
 		this.insertData({...file, publicPath}, user)
 
-		return publicPath
+		return publicPath;
+	}
+
+	getDest = (filename, subdir) => {
+
+		let filePath = `${this.config.upload_dir}/${subdir}/${filename}`.replace(/\/+/g, '/')
+
+		return filePath
+	}
+
+	upload = async (filepath, dest, subdir) => {
+
 	}
 
 	getPublicPath = (filename, subdir) => {
-
+	
 		let url = `${this.config.public_path}/${subdir}/${filename}`.replace(/\/+/g, '/')
 
 		url = url.replace(':/', "://")

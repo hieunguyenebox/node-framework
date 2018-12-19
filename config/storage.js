@@ -5,14 +5,14 @@ const oneMB = 1024 * 1024
 
 module.exports = {
 
-	// default: 'local',
+	default: 'local',
 	
-	// local: {
+	local: {
 
-	// 	upload_dir: path.resolve(process.cwd(), 'public/uploads'),
-	// 	public_path: '/uploads',
-	// 	storage_name: 'local'
-	// },
+		upload_dir: path.resolve(process.cwd(), 'public/uploads'),
+		public_path: '/uploads',
+		storage_name: 'local'
+	},
 
 	limit: {
 		maxFileSize: oneMB, // 100MB
