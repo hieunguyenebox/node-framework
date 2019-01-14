@@ -12,6 +12,7 @@ const promisifyClient = client => ({
 
 	sismember: promisify(client.sismember).bind(client),
 
+	sadd: promisify(client.sadd).bind(client),
 
 	srem: promisify(client.srem).bind(client),
 	

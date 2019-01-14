@@ -1,13 +1,13 @@
 
-import mongoDB from 'plugins/db/mongo'
-import mongoose from 'mongoose'
+import { getDB } from 'plugins/lib/db'
+import { Schema } from 'mongoose'
 
-const connection = mongoDB.createConnection()
+const conn = getDB('mongodb.default')
 
-const SeedVersionSchema = new mongoose.Schema({
+const SeedVersionSchema = new Schema({
 
 	v: String,
 	file: String,
 })
 
-export default connection.model('seed_version', SeedVersionSchema)
+export default conn.model('seed_version', SeedVersionSchema)

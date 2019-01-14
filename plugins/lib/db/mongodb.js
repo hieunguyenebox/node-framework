@@ -18,7 +18,7 @@ const createConnection = () => {
 	let connectUri = `mongodb://${DB_DEFAULT_HOST}:${DB_DEFAULT_PORT}/${DB_DEFAULT_NAME}`
 		, options = {
 			useNewUrlParser: true,
-			autoIndex: true
+			useCreateIndex: true
 		}
 
 	if (process.env.NODE_ENV !== 'local') {
