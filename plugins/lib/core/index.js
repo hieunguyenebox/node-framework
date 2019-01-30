@@ -2,8 +2,7 @@
 import config from 'plugins/lib/config'
 import { loadENVConfig } from './preload'
 
-let plugins = config.get('bootstrap-plugins')
-	, fs = require('fs')
+let fs = require('fs')
 	, path = require('path');
 
 const listenErrors = () => {
@@ -19,24 +18,30 @@ const listenErrors = () => {
 	});
 }
 
-const bootstrapPlugins = () => {
+const bootstrapPlugins = (plugins, nodeModules = false) => {
 
-	for (let key in plugins) {
+	try {
 
-		const pluginName = plugins[key]
+		for (let key in plugins) {
 
-		var index = path.resolve(__dirname, `../../${pluginName}`)
-		
-		if (fs.existsSync(index)) {
+			const pluginName = plugins[key]
 
+			let index = pluginName
+
+			if (!nodeModules)
+				index = path.resolve(__dirname, `../../${pluginName}`)
+			
 			const plugin = require(index)
 
 			if (plugin && typeof plugin.default === 'function') {
 
-				try { plugin.default() }
-				catch (ex) { console.error(ex) }
+				plugin.default()
 			}
 		}
+
+	} catch (ex) {
+
+		console.error(ex)
 	}
 }
 
@@ -44,7 +49,10 @@ export const startPlugins = () => {
 
 	loadENVConfig()
 	listenErrors()
-	bootstrapPlugins()
+
+	const { plugins, modules } = config.get('bootstrap-plugins')
+	bootstrapPlugins(plugins)
+	bootstrapPlugins(modules, true)
 }
 
 startPlugins()

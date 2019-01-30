@@ -1,13 +1,19 @@
 
-module.exports = [
+module.exports = {
+
+	modules: [
+		
+	]
+	,
+	plugins: [
 	
-	// load this first for connect to database
-	"lib/db",
+		// load this first for connect to database
+		"lib/db",
 
-	"lib/server",
+		"lib/server",
 
+		// put you plugins before this
+		"lib/server-error-handler",
+	]
 
-
-	// put you plugins before this
-	"lib/server-error-handler",
-]
+}
