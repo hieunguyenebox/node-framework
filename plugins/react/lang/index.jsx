@@ -1,7 +1,7 @@
 
 import langConfig from './lang'
 
-module.exports = (configPath, lang = 'en') => {
+export default (configPath, lang = 'en') => {
 
 	let result = im.fromJS(langConfig[lang]).toJS()
 	

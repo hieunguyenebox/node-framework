@@ -1,7 +1,7 @@
 
 import gql from "graphql-tag"
 
-module.exports = {
+export default {
 
 	
 	user_info:  gql`

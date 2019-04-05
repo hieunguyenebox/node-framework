@@ -140,4 +140,4 @@ const validate = (data, rules) => {
 }
 
 
-module.exports = { validate }
+export default { validate }

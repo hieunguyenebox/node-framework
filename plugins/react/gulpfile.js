@@ -42,22 +42,35 @@ class Gulp extends MainGulp {
 			)
 		}
 
+		const generatePluginsPath = () => {
+
+			const list = {
+				helper: path.resolve(__dirname, 'plugins/helper'),
+				logger: path.resolve(__dirname, 'plugins/logger'),
+				validator: path.resolve(__dirname, 'plugins/validator'),
+				lang: path.resolve(__dirname, 'lang'),
+				names: path.resolve(__dirname, 'share/names'),
+				apis: path.resolve(__dirname, 'share/apis'),
+				img: path.resolve(__dirname, './assets/img'),
+				routes: path.resolve(__dirname, 'share/routes'),
+				query: path.resolve(__dirname, 'share/query'),
+				mutation: path.resolve(__dirname, 'share/mutation'),
+			}
+
+			for (let key in list) {
+				list[key] = [list[key], 'default']
+			}
+
+			return list
+		}
+
 		plugins.push(new webpack.ProvidePlugin({
 			React: 'react',
 			ReactDOM: 'react-dom',
 			im: 'immutable',
 			$: 'jquery',
 			jQuery: 'jquery',
-			helper: path.resolve(__dirname, 'plugins/helper'),
-			logger: path.resolve(__dirname, 'plugins/logger'),
-			validator: path.resolve(__dirname, 'plugins/validator'),
-			lang: path.resolve(__dirname, 'lang'),
-			names: path.resolve(__dirname, 'share/names'),
-			apis: path.resolve(__dirname, 'share/apis'),
-			img: path.resolve(__dirname, './assets/img'),
-			routes: path.resolve(__dirname, 'share/routes'),
-			query: path.resolve(__dirname, 'share/query'),
-			mutation: path.resolve(__dirname, 'share/mutation'),
+			...generatePluginsPath()
 		}))
 
 		return plugins
@@ -85,11 +98,11 @@ class Gulp extends MainGulp {
 				'webpack-dev-server/client?http://localhost:' + PORT_HOT,
 				'webpack/hot/only-dev-server',
 				'react-hot-loader/patch',
-				this.dir() + '/app.jsx',
+				this.dir() + '/index.jsx',
 			]
 
 		return [
-			this.dir() + '/app.jsx',
+			this.dir() + '/index.jsx',
 		]
 	}
 

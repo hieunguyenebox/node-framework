@@ -22,20 +22,23 @@ const bootstrapPlugins = (plugins, nodeModules = false) => {
 
 	try {
 
-		for (let key in plugins) {
+		if (Array.isArray(plugins)) {
 
-			const pluginName = plugins[key]
+			for (let key in plugins) {
 
-			let index = pluginName
+				const pluginName = plugins[key]
 
-			if (!nodeModules)
-				index = path.resolve(__dirname, `../../${pluginName}`)
-			
-			const plugin = require(index)
+				let index = pluginName
 
-			if (plugin && typeof plugin.default === 'function') {
+				if (!nodeModules)
+					index = path.resolve(__dirname, `../../${pluginName}`)
+				
+				const plugin = require(index)
 
-				plugin.default()
+				if (plugin && typeof plugin.default === 'function') {
+
+					plugin.default()
+				}
 			}
 		}
 

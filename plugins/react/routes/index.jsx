@@ -1,6 +1,5 @@
 
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { hot } from 'react-hot-loader'
 import RouteComponents from './config'
 
 const initRoutes = () => {
@@ -39,5 +38,5 @@ class Routes extends React.Component {
 	}
 }
 
-export default hot(module)(Routes)
+export default Routes
 	

@@ -1,5 +1,8 @@
 
 
-const Home = () => <div>{lang('home')}</div>
+const Home = () => {
+	
+	return <div>{lang('home')}</div>
+}
 
 export default Home

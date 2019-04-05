@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { Container, Header, Footer, Body } from 'components/layout'
 import "style/style"
 import Error500 from 'pages/error/_500'
+import { hot } from 'react-hot-loader'
 
 class Main extends React.Component {
 
@@ -44,7 +45,4 @@ class Main extends React.Component {
 
 Main = withApollo(Main)
 
-ReactDOM.render(
-	<Main />,
-	document.getElementById('root')
-)
+export default hot(module)(Main)
