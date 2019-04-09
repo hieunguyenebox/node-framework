@@ -18,3 +18,4 @@ public/assets/*
 views/index.html
 gg.json
 .env
+/db
