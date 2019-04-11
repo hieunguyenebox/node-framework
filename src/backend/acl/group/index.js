@@ -8,7 +8,6 @@ export const Query = `
 	backendGroups(pagination: Pagination): ListBackendGroup
 	backendPermissions: JSON
 `
-
 export const Mutation = `
 	
 	createBackendGroup(backendGroup: BackendGroupInput): Response
@@ -16,7 +15,6 @@ export const Mutation = `
 	deleteBackendGroup(id: String!): Response
 	lockGroup(id: String!): Response
 `
-
 export const Type = `
 	
 	type ListBackendGroup {
