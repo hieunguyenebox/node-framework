@@ -2,29 +2,16 @@
 var gulp = require('gulp'),
 	path = require('path'),
 	fs = require('fs'),
-	del = require('del');
+	del = require('del'),
+	Backend = require('./src/backend/gulp-build'),
+	React = require('./src/react/gulp-build');
 
-const plugins = [
-	'lib',
-	'upload',
-	'react'
-]
-
-gulp.task('build', (done) => {
+gulp.task('build', done => {
 
 	del(['dist']).then(() => {
 
-		for (let plugin of plugins) {
-
-			const gulpPath = path.resolve(__dirname, `plugins/${plugin}/gulpfile.js`)
-
-			if (fs.existsSync(gulpPath)) {
-
-				const Plugin = require(gulpPath)
-
-				if (Plugin && Plugin.run)
-					Plugin.run(done)
-			}
-		}
+		Backend.run()
+		React.run()
+		done()
 	})
 })

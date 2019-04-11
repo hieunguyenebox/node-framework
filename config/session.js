@@ -1,7 +1,7 @@
 
 const session = require('express-session')
 	, RedisStore = require('connect-redis')(session)
-	, client = require('../dist/lib/db/redis').default.createClient()
+	, client = require('../dist/db/redis').default.createClient()
 	, secure = process.env.NODE_ENV != 'local';
 
 
