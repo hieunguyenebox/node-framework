@@ -1,12 +1,11 @@
 
 import path from 'path'
-import { route } from './express'
 
-export const initRoutes = () => {
+export const initRoutes = (app) => {
 
 	const indexHtml = path.resolve(process.cwd(), 'views/index.html')
 	
-	route.get('/*', (req, res) => {
+	app.get('/*', (req, res) => {
 
 		res.sendFile(indexHtml)
 	})

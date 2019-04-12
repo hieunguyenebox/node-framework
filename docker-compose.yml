@@ -17,8 +17,8 @@ services:
     image: mongo:4.0.8
     volumes:
       - ./db/mongo:/data/db
-    # ports:
-    #   - "27017:27017"
+    ports:
+      - "27017:27017"
 
   redis:
     image: redis:5.0.4

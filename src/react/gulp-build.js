@@ -208,7 +208,7 @@ class Gulp {
 			proxy: [{
 				context: [
 					'/upload',
-					'/api/v1',
+					'/api/*',
 					'/assets/js',
 					'/logout'
 				],

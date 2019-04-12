@@ -48,7 +48,7 @@ app.use(session({
 
 export const startServer = () => {
 
-	initRoutes()
+	initRoutes(app)
 	
 	const port = process.env.NODE_PORT || 3000
 
