@@ -1,6 +1,7 @@
 
 import config from 'backend/config'
 import { loadENVConfig } from './preload'
+import logger from 'backend/logger'
 
 let fs = require('fs')
 	, path = require('path');
@@ -9,12 +10,12 @@ const listenErrors = () => {
 
 	process.on('unhandledRejection', (reason, p) => {
 
-		console.error(reason)
+		logger.error(reason)
 	});
 
 	process.on('uncaughtException', (reason, p) => {
 
-		console.error(reason)
+		logger.error(reason)
 	});
 }
 
@@ -44,7 +45,7 @@ const bootstrapPlugins = (plugins, nodeModules = false) => {
 
 	} catch (ex) {
 
-		console.error(ex)
+		logger.error(ex)
 	}
 }
 

@@ -5,8 +5,6 @@ var gulp = require('gulp'),
 	path = require('path'),
 	fs = require('fs');
 
-// const notifyNodemonStream = fs.createWriteStream(path.resolve(process.cwd(), 'restart_nodemon'))
-
 class Gulp {
 
 	constructor () {
@@ -92,7 +90,7 @@ class Gulp {
 
 			nodemon({
 				watch: path.resolve(process.cwd(), 'restart_nodemon'),
-				script: path.resolve(process.cwd(), 'dist/core'),
+				script: path.resolve(process.cwd(), 'dist'),
 				env: { 'NODE_ENV': process.env.NODE_ENV },
 				done
 		  	})

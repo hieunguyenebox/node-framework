@@ -3,7 +3,7 @@ const NODE_PORT =  process.env.NODE_PORT || 3000;
 
 const app = {
   name      : 'styless',
-  script    : './dist/lib/core',
+  script    : './dist',
   watch     : false,
   // max_memory_restart: '500M',
   log_date_format: 'YYYY-MM-DD HH:mm Z',
@@ -24,7 +24,6 @@ const app = {
 
 const envIndex = process.argv.findIndex(v => v === '--env') + 1
     , env = process.argv[envIndex];
-
 
 if (['production'].indexOf(env) !== -1) {
   app.instances = 'max'
