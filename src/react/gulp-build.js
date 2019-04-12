@@ -157,6 +157,13 @@ class Gulp {
 							publicPath: '/assets/img',
 						}
 					},
+					// {
+					// 	test: /\.less$/,
+					// 	options: {
+					// 		javascriptEnabled: true
+					// 	},
+					// 	loader: 'less-loader' // compiles Less to CSS
+					// },
 					{
 						test: /\.(sa|sc|c)ss$/,
 						use: [
@@ -208,7 +215,7 @@ class Gulp {
 			proxy: [{
 				context: [
 					'/upload',
-					'/api/*',
+					'/api',
 					'/assets/js',
 					'/logout'
 				],
