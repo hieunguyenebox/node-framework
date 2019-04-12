@@ -3,7 +3,7 @@ import Routes from './routes'
 import withApollo from 'components/hoc/with-apollo'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { Container, Header, Footer, Body } from 'components/layout'
-import "style/style"
+import "style"
 import Error500 from 'pages/error/_500'
 import { hot } from 'react-hot-loader'
 
@@ -13,7 +13,6 @@ class Main extends React.Component {
 	
 	componentDidCatch (err) {
 
-		logger.error(err)
 		this.setState({error: true})
 	}
 

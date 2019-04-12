@@ -20,8 +20,6 @@ const logger = {
 
 	error: (err, from) => {
 
-		if (env === 'local') console.log(err);
-
 		sendLog('error', {err, from})
 	},
 
