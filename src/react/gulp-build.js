@@ -21,7 +21,7 @@ class Gulp {
 
 	isLocal () {
 
-		return process.env.NODE_ENV === 'local'
+		return process.env.NODE_ENV === 'development'
 	}
 
 	definePlugins () {
@@ -81,7 +81,7 @@ class Gulp {
 		const alias = {
 			style: path.resolve(__dirname, './assets/sass'),
 			pages: path.resolve(__dirname, './pages'),
-			config:  path.resolve(__dirname,`./config/${process.env.NODE_ENV !='local' ? process.env.NODE_ENV : ''}` ),
+			config:  path.resolve(__dirname,`./config/${process.env.NODE_ENV}` ),
 			components: path.resolve(__dirname, './components'),
 			ui: path.resolve(__dirname, './components/ui'),
 			hoc: path.resolve(__dirname, './components/hoc'),

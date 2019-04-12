@@ -1,10 +1,17 @@
 
 import dotenv from 'dotenv'
-import config from 'backend/config'
+import path from 'path'
+import fs from 'fs'
 
-const envPath = config.get('env-path')
+const envPath = process.env.ENV_PATH || path.resolve(process.cwd(), '.env')
 
-export const loadENVConfig = () => {
+const loadENVConfig = () => {
+
+	if (!fs.existsSync(envPath)) {
+
+		console.log('Missing ENV_PATH'.error)
+		process.exit(1)
+	}
 
 	const loadingEnvConfig = dotenv.config({
 		path: envPath
@@ -13,3 +20,5 @@ export const loadENVConfig = () => {
 	if (loadingEnvConfig.error)
 		console.error(loadingEnvConfig.error)
 }
+
+loadENVConfig()

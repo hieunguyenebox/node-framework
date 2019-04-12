@@ -3,7 +3,7 @@ import winston from 'winston'
 
 const logdir = process.env.LOG_DIR || './log'
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
     level: 'debug', //only log for level less than or equal this
     format: winston.format.json(),
     defaultMeta: { service: 'styless' },
@@ -16,5 +16,3 @@ const logger = winston.createLogger({
         new winston.transports.File({ filename: logdir + '/combined.log' })
     ]
   });
-
-  export default logger

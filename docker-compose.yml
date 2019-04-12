@@ -6,7 +6,6 @@ services:
       - "9000:9000"
     volumes:
       - ./:/src/app
-      - ./.env:/src/app/.env
 
   # nginx:
   #   image: nginx:latest

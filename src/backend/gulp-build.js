@@ -32,7 +32,7 @@ class Gulp {
 
 	isLocal () {
 
-		return process.env.NODE_ENV === 'local'
+		return process.env.NODE_ENV === 'development'
 	}
 
 	dist () {

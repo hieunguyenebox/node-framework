@@ -1,10 +1,10 @@
 
-import config from 'backend/config'
-import { loadENVConfig } from './preload'
-import logger from 'backend/logger'
-
-let fs = require('fs')
-	, path = require('path');
+import config from 'config'
+import './preload'
+import { logger } from 'backend/core'
+import path from 'path'
+import fs from 'fs'
+import colors from 'colors'
 
 const listenErrors = () => {
 
@@ -36,9 +36,9 @@ const bootstrapPlugins = (plugins, nodeModules = false) => {
 				
 				const plugin = require(index)
 
-				if (plugin && typeof plugin.default === 'function') {
+				if (plugin && typeof plugin.bootstrap === 'function') {
 
-					plugin.default()
+					plugin.bootstrap()
 				}
 			}
 		}
@@ -51,10 +51,17 @@ const bootstrapPlugins = (plugins, nodeModules = false) => {
 
 export const startPlugins = () => {
 
-	loadENVConfig()
+	const environments = ['development', 'production', 'staging']
+
+	if (!environments.includes(process.env.NODE_ENV)) {
+
+		console.log('Please provide NODE_ENV=development/staging/production'.error)
+		process.exit(1)
+	}
+
 	listenErrors()
 
-	const { plugins, modules } = config.get('bootstrap')
+	const { plugins, node_modules } = config.get('bootstrap')
 	bootstrapPlugins(plugins)
 	bootstrapPlugins(modules, true)
 }
