@@ -197,7 +197,7 @@ class Gulp {
 
 	webpack () {
 
-		gulp.src(this.dir() + '/app.jsx')
+		gulp.src(this.dir() + '/index.jsx')
 			.pipe(webpackStream(this.webpackConfig()))
 			.on('error', function handleError(err) {
 				console.log(err)
