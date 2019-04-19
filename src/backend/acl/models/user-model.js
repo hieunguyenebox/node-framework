@@ -1,7 +1,7 @@
 
 import { mongodb } from 'backend/core'
 import { Schema } from 'mongoose'
-import { password } from 'backend/lib'
+import password from 'backend/lib/password'
 
 const UserSchema = new Schema({
 
@@ -22,13 +22,16 @@ const UserSchema = new Schema({
     },
     password: {
         required: true,
+        type: String,
     },
     salt: {
-        required: true
+        required: true,
+        type: String,
     },
     status: {
         enum: ['active', 'inactive', 'pending', 'blocked'],
         default: 'pending',
+        type: String,
         required: true
     }
 
@@ -42,7 +45,7 @@ class User {
         return this.status === 'active'
     }
 
-    matchPassword (inputPass) {
+    async matchPassword (inputPass) {
 
         return password.compare(this.password, inputPass, this.salt)
     }
@@ -50,6 +53,6 @@ class User {
 
 UserSchema.loadClass(User)
 
-const Model = mongodb.Model('user', UserSchema)
+const Model = mongodb.model('user', UserSchema)
 
 export default Model

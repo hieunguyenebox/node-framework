@@ -2,7 +2,7 @@ import graphqlHTTP from 'express-graphql'
 import './custom-types'
 import { buildSchema } from 'graphql'
 import path from 'path'
-import { TodoQuery, TodoMutation, TodoTypes, TodoValue } from 'backend/todo'
+import { Query, Mutation, Type, Value } from 'backend/acl'
 
 const schema = buildSchema(`
     scalar JSON
@@ -10,7 +10,7 @@ const schema = buildSchema(`
     scalar DateTime
 
     type Query {
-        ${TodoQuery || ''}
+        ${Query || ''}
     }
 
     type Response {
@@ -20,10 +20,10 @@ const schema = buildSchema(`
     }
 
     type Mutation {
-        ${TodoMutation || ''}
+        ${Mutation || ''}
     }
 
-    ${TodoTypes || ''}
+    ${Type || ''}
 
     input Pagination {
         page: Int = 1
@@ -33,7 +33,7 @@ const schema = buildSchema(`
 `)
 
 const values = {
-    ...TodoValue
+    ...Value
 }
 
 export const createNodes = () => graphqlHTTP((request, response, graphQLParams) => {

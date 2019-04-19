@@ -2,6 +2,7 @@
     "bootstrap": {
         "plugins": [
             "core",
+            "acl",
             "graphql-api"
         ],
         "node_modules": [

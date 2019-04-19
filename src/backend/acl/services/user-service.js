@@ -1,7 +1,6 @@
 
 import UserModel from '../models/user-model'
-import { __ } from 'i18n';
-import { logger } from 'handlebars';
+import { logger } from 'backend/core';
 
 /**
  * author: hieunguyen
@@ -39,5 +38,6 @@ const getUserById = userid => {
 
 
 export default {
-    login
+    login,
+    getUserById
 }

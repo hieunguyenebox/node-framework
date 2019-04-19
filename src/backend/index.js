@@ -10,12 +10,12 @@ const listenErrors = () => {
 
 	process.on('unhandledRejection', (reason, p) => {
 
-		logger.error(reason)
+		console.log(colors.bgRed.white(reason.stack))
 	});
 
 	process.on('uncaughtException', (reason, p) => {
 
-		logger.error(reason)
+		console.log(colors.bgRed.white(reason.stack))
 	});
 }
 
@@ -45,7 +45,7 @@ const bootstrapPlugins = (plugins, nodeModules = false) => {
 
 	} catch (ex) {
 
-		logger.error(ex)
+		console.log(colors.bgRed.white(ex))
 	}
 }
 
@@ -63,7 +63,7 @@ export const startPlugins = () => {
 
 	const { plugins, node_modules } = config.get('bootstrap')
 	bootstrapPlugins(plugins)
-	bootstrapPlugins(modules, true)
+	bootstrapPlugins(node_modules, true)
 }
 
 startPlugins()
