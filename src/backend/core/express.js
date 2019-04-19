@@ -5,6 +5,7 @@ import { initRoutes } from './routes';
 import { logger } from './logger'
 import { createClient } from './redis';
 import colors from 'colors'
+import passport from 'passport';
 
 let express = require('express')
 	, session = require('express-session')
@@ -39,6 +40,8 @@ app.use(session({
 		next()
 	})
 	.use(bodyParser.urlencoded({ extended: false }))
+	.use(passport.initialize())
+	.use(passport.session())
 	.use(route)
 	.use((err, req, res, next) => {
 		
