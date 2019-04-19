@@ -1,5 +1,6 @@
 # styless
 
+### NODE VERSION: 10
 ### Getting Started
 
 - Basic code structure includes: React and express.
