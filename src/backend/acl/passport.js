@@ -2,7 +2,7 @@
 import { route } from 'backend/core'
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
-import UserService from './services/user-service'
+import UserService from 'backend/acl/services/user-service'
 
 const init = () => {
 
@@ -19,7 +19,6 @@ const init = () => {
 
 
     passport.use(new LocalStrategy(UserService.login))
-
 
 }
 

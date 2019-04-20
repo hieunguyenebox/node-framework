@@ -3,7 +3,7 @@
         "plugins": [
             "core",
             "acl",
-            "graphql-api"
+            "api"
         ],
         "node_modules": [
             
@@ -25,6 +25,10 @@
                 "maxAge": 31536000000
             }
         }
+    },
+
+    "mail": {
+
     },
 
     "upload": {
