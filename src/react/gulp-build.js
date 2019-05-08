@@ -98,11 +98,21 @@ class Gulp {
 				'webpack-dev-server/client?http://localhost:' + PORT_HOT,
 				'webpack/hot/only-dev-server',
 				'react-hot-loader/patch',
+<<<<<<< HEAD:plugins/react/gulpfile.js
+				this.dir() + '/app.jsx',
+				'@babel/polyfill'
+			]
+
+		return [
+			this.dir() + '/app.jsx',
+			'@babel/polyfill'
+=======
 				this.dir() + '/index.jsx',
 			]
 
 		return [
 			this.dir() + '/index.jsx',
+>>>>>>> develop:src/react/gulp-build.js
 		]
 	}
 

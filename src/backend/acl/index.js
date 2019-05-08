@@ -33,5 +33,5 @@ export const Type = `
 
 export const Value = {
 
-    me: auth(() => ({name: 'hieu'}))
+    // me: auth(() => ({name: 'hieu'}))
 }

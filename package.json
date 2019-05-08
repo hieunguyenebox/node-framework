@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.0",
     "apollo-boost": "^0.1.7",
     "apollo-link": "^1.2.2",
     "apollo-upload-client": "^8.0.0",
