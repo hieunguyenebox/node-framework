@@ -6,5 +6,4 @@ import passport from 'passport'
 export const bootstrap = () => {
 
     route.use('/api/v1', createNodes())
-    console.log('ok la')
 }
