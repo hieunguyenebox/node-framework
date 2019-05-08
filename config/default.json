@@ -1,0 +1,41 @@
+{
+    "bootstrap": {
+        "plugins": [
+            "core",
+            "acl",
+            "api"
+        ],
+        "node_modules": [
+            
+        ]
+    },
+
+    "app": {
+
+        "ssl": false,
+
+        "session": {
+            "resave": false,
+	        "saveUninitialized": false,
+            "cookie": {
+                "secure": false,
+                "sameSite": true,
+                "httpOnly": true,
+                "proxy": false,
+                "maxAge": 31536000000
+            }
+        }
+    },
+
+    "mail": {
+
+    },
+
+    "upload": {
+        "upload_dir": "",
+		"public_path": "/uploads",
+        "storage_name": "local",
+        "maxFileSize": 1048576,
+		"maxFiles": 10
+    }
+}

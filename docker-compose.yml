@@ -1,0 +1,26 @@
+version: "3.2"
+services:
+  app:
+    build: .
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./:/src/app
+
+  # nginx:
+  #   image: nginx:latest
+  #   volumes:
+  #     - ./docker-config/site.conf:/etc/nginx/conf.d/site.conf
+  #     - ./log/nginx:/var/log/nginx
+
+  mongo:
+    image: mongo:4.0.8
+    volumes:
+      - ./db/mongo:/data/db
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: redis:5.0.4
+    volumes:
+      - ./db/redis:/data
