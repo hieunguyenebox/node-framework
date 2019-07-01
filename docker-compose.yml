@@ -1,11 +1,5 @@
 version: "3.2"
 services:
-  app:
-    build: .
-    ports:
-      - "9000:9000"
-    volumes:
-      - ./:/src/app
 
   # nginx:
   #   image: nginx:latest
@@ -14,13 +8,20 @@ services:
   #     - ./log/nginx:/var/log/nginx
 
   mongo:
-    image: mongo:4.0.8
+    image: mongo
     volumes:
       - ./db/mongo:/data/db
-    ports:
-      - "27017:27017"
+    # ports:
+    #   - "27017:27017"
 
   redis:
-    image: redis:5.0.4
+    image: redis
     volumes:
       - ./db/redis:/data
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/src/app
