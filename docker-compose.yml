@@ -24,4 +24,6 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./:/src/app
+      - ./:/app
+    env_file: .env
+    command: ["npm", "run", "dev"]

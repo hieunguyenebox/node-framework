@@ -1,6 +1,5 @@
 
 import config from 'config'
-import './preload'
 import path from 'path'
 import colors from 'colors'
 

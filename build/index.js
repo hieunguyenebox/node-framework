@@ -12,7 +12,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("config"));
-require("./preload");
 const path_1 = __importDefault(require("path"));
 const colors_1 = __importDefault(require("colors"));
 var FUNCTION_TYPE;
