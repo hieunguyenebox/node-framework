@@ -1,10 +1,10 @@
 import graphqlHTTP from 'express-graphql'
 import './custom-types'
 import { buildSchema } from 'graphql'
-import path from 'path'
 import gql from 'graphql-tag'
-import { Query, Mutation, Type, Value } from '@root/acl'
+import { Query, Mutation, Type, Value } from 'acl'
 import util from 'util'
+import { Request } from 'express';
 
 const schema = buildSchema(`
 
@@ -39,7 +39,7 @@ const values = {
     ...Value
 }
 
-export const createNodes = () => graphqlHTTP((req, res, graphQLParams) => {
+export const createNodes = () => graphqlHTTP((req: Request) => {
 
     console.log(req.body.query)
     const query = gql(req.body.query)

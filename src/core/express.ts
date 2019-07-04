@@ -1,17 +1,16 @@
 
 import config from 'config'
 import Static from 'serve-static'
-import { initRoutes } from './routes';
 import { logger } from './logger'
 import { createClient } from './redis';
-import colors from 'colors'
+import 'colors'
 import passport from 'passport';
 
 let express = require('express')
 	, session = require('express-session')
 	, bodyParser = require('body-parser')
 	, path = require('path')
-	, appConfig = config.get('app')
+	, appConfig: any = config.get('app')
 	, rootPath = process.cwd();
 
 const app = express()
@@ -28,36 +27,23 @@ app.use(session({
 	}))
 	.use(middlewares)
 	.use(bodyParser.json())
-	.use(bodyParser.text(), (req, res, next) => {
-
-		try {
-
-			req.body = JSON.parse(req.body)
-
-		} catch(ex) {
-
-		}
-		next()
-	})
 	.use(bodyParser.urlencoded({ extended: false }))
 	.use(passport.initialize())
 	.use(passport.session())
 	.use(route)
-	.use((err, req, res, next) => {
+	.use((err:any, _, res: any) => {
 		
+		console.log(err)
 		logger.error(err)
 		return res.json({ok: 0, msg: 'Something Broken!'})
+
 	});
 
-export const startServer = () => {
+export const startServer = (): void => {
 
-	initRoutes(app)
-	
 	const port = process.env.NODE_PORT || 3000
-
-	let hosts = process.env.NODE_HOST || 'localhost'
-
-	hosts = hosts.split(',')
+	const hostString = process.env.NODE_HOST || 'localhost'
+	const hosts: Array<string> = hostString.split(',')
 
 	for (let host of hosts) {
 

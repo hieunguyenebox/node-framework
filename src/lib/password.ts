@@ -1,11 +1,10 @@
 
 import Crypto from 'crypto'
-import { logger } from '@root/core';
-import '@babel/polyfill'
+import { logger } from 'core';
 
-const compare = (hash, pass, salt) => {
+const compare = (hash: string, pass: string, salt: string): Promise<boolean> => {
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
 
         Crypto.scrypt(pass, salt, 64, (err, deriveKey) => {
 
@@ -30,9 +29,9 @@ const compare = (hash, pass, salt) => {
  *  - hash
  *  - salt
  */
-const hash = async inputPass => {
+const hash = async (inputPass: string): Promise<{hash: string, salt: string}> => {
 
-    const salt = await new Promise(resolve => {
+    const salt: string = await new Promise((resolve, reject) => {
 
         Crypto.randomBytes(32, (err, buf) => {
 

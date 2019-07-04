@@ -4,16 +4,19 @@
         "removeComments": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "target": "es6",
+        "target": "ES2015",
         "noImplicitAny": false,
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "build",
+        "strict": true,
         "baseUrl": ".",
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
         "paths": {
             "*": [
                 "node_modules/*",
-                "src/types/*"
+                "src/*"
             ]
         }
     },

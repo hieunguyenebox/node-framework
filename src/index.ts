@@ -1,4 +1,6 @@
 
+require('module-alias/register')
+
 import config from 'config'
 import path from 'path'
 import colors from 'colors'
@@ -30,7 +32,7 @@ interface Plugin {
  */
 const listenErrors = () => {
 
-	process.on('unhandledRejection', (reason: any, p) => {
+	process.on('unhandledRejection', (reason: any, _) => {
 
 		console.log(colors.bgRed.white(reason.stack))
 	});
@@ -55,7 +57,6 @@ const bootstrapPlugins = async (plugins: Array<Plugin>) => {
 			for (let pluginConfig of plugins) {
 
 				const pluginPath = path.resolve(process.cwd(), `build/${pluginConfig.name}`)
-				
 				const plugin = require(pluginPath)
 
 				if (plugin && typeof plugin.bootstrap === 'function') {
@@ -64,6 +65,8 @@ const bootstrapPlugins = async (plugins: Array<Plugin>) => {
 						plugin.bootstrap()
 					else
 						await plugin.bootstrap()
+
+					console.log(`Finish bootstrap: ${pluginPath}`.bgGreen)
 				}
 			}
 		}
@@ -82,7 +85,7 @@ const start = () => {
 
 	const environments: Array<string> = ['development', 'production', 'staging']
 
-	if (!environments.includes(process.env.NODE_ENV)) {
+	if (process.env.NODE_ENV && !environments.includes(process.env.NODE_ENV)) {
 
 		console.log('Please provide NODE_ENV=development/staging/production'.red)
 		process.exit(1)

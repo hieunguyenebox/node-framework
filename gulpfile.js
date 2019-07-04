@@ -4,7 +4,6 @@ var gulp = require('gulp'),
 	del = require('del'),
 	fs = require('fs'),
 	ts = require('gulp-typescript'),
-	tslint = require('gulp-tslint'),
 	tsProject = ts.createProject('tsconfig.json'),
 	path = require('path');
 
@@ -53,10 +52,6 @@ const buildSource = () => {
 	return tsProject.src()
         .pipe(tsProject())
 		.js.pipe(gulp.dest(BUILD_PATH))
-		.pipe(tslint({
-            formatter: "prose"
-        }))
-        .pipe(tslint.report())
 		.on('end', notifyNodeMon);
 }
 

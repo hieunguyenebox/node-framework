@@ -1,5 +1,5 @@
 
-import { buildSchema, GraphQLScalarType } from 'graphql'
+import { GraphQLScalarType } from 'graphql'
 
 new GraphQLScalarType({
 	name: 'JSON',
@@ -7,7 +7,7 @@ new GraphQLScalarType({
 		return JSON.stringify(v)
 	},
 	parseValue: v => JSON.parse(v),
-	parseLiteral: ast => {
+	parseLiteral: () => {
 
 	}
 })
@@ -18,7 +18,7 @@ new GraphQLScalarType({
 		return v.toString()
 	},
 	parseValue: v => v,
-	parseLiteral: ast => {
+	parseLiteral: () => {
 
 	}
 })
@@ -32,6 +32,6 @@ new GraphQLScalarType({
 
 		JSON.parse(v)
 	},
-	parseLiteral: ast => {
+	parseLiteral: () => {
 	}
 })

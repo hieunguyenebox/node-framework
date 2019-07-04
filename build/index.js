@@ -11,6 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('module-alias/register');
 const config_1 = __importDefault(require("config"));
 const path_1 = __importDefault(require("path"));
 const colors_1 = __importDefault(require("colors"));
@@ -20,7 +21,7 @@ var FUNCTION_TYPE;
     FUNCTION_TYPE[FUNCTION_TYPE["await"] = 1] = "await";
 })(FUNCTION_TYPE || (FUNCTION_TYPE = {}));
 const listenErrors = () => {
-    process.on('unhandledRejection', (reason, p) => {
+    process.on('unhandledRejection', (reason, _) => {
         console.log(colors_1.default.bgRed.white(reason.stack));
     });
     process.on('uncaughtException', (reason) => {
@@ -38,6 +39,7 @@ const bootstrapPlugins = (plugins) => __awaiter(this, void 0, void 0, function* 
                         plugin.bootstrap();
                     else
                         yield plugin.bootstrap();
+                    console.log(`Finish bootstrap: ${pluginPath}`.bgGreen);
                 }
             }
         }
@@ -48,7 +50,7 @@ const bootstrapPlugins = (plugins) => __awaiter(this, void 0, void 0, function* 
 });
 const start = () => {
     const environments = ['development', 'production', 'staging'];
-    if (!environments.includes(process.env.NODE_ENV)) {
+    if (process.env.NODE_ENV && !environments.includes(process.env.NODE_ENV)) {
         console.log('Please provide NODE_ENV=development/staging/production'.red);
         process.exit(1);
     }

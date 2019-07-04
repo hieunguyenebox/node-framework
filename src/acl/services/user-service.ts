@@ -1,14 +1,16 @@
 
 import UserModel from '../models/user-model'
-import { logger } from '@root/core';
+import { logger } from 'core';
+import { __ } from 'i18n';
+import { IUser } from 'types/user';
 
 /**
  * author: hieunguyen
  * desc: Login user
  */
-const login = (email, password, done) => {
+const login = (email: string, password: string, done) => {
 
-    UserModel.findOne({email}).then(user => {
+    UserModel.findOne({email}).then((user: IUser | null) => {
 
         if (user && user.matchPassword(password)) {
 

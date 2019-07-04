@@ -1,7 +1,7 @@
 
 import winston from 'winston'
 
-const logdir = process.env.LOG_DIR || './log'
+const logdir: string = process.env.LOG_DIR || './log'
 
 export const logger = winston.createLogger({
     level: 'debug', //only log for level less than or equal this
