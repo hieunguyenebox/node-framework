@@ -11,8 +11,8 @@
         "outDir": "build",
         "strict": true,
         "baseUrl": ".",
-        "noUnusedParameters": true,
-        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "noUnusedLocals": false,
         "paths": {
             "*": [
                 "node_modules/*",
